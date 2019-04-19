@@ -1,0 +1,8 @@
+---
+ref: bug
+name: Bug
+description: A pack of workflow repros for st2 bug reports
+keywords:
+version: 0.1.0
+author: Tristan
+email: trstruth@microsoft.com
