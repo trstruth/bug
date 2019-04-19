@@ -5,7 +5,7 @@ description: The parsing for with items syntax can cause an error
 tasks:
   works_as_expected:
     with: n in <% list("1","2","3") %>
-    action: core.echo message="<% item(n) %>
+    action: core.echo message=<% item(n) %>
     next:
       - when: <% succeeded %>
         do: doesnt_work_as_expected
@@ -13,4 +13,4 @@ tasks:
   doesnt_work_as_expected:
     # "interface" contains the substring "in" which breaks the iteration.
     with: interface in <% list("1","2","3") %>
-    action: core.echo message="<% item(interface) %>"
+    action: core.echo message=<% item(interface) %>
