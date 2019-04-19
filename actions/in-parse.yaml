@@ -1,0 +1,7 @@
+---
+name: in-parse
+pack: bug
+runner_type: orquesta
+description: The parsing for with items syntax can cause an error
+enabled: True
+entry_point: workflows/in-parse.yaml
