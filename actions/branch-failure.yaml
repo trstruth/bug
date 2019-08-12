@@ -1,0 +1,7 @@
+---
+description: branching failure
+enabled: true
+runner_type: orquesta
+entry_point: workflows/branch-failure.yaml
+name: branch-failure
+pack: bug

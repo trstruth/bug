@@ -1,0 +1,69 @@
+version: '1.0'
+description: Begins wan link troubleshooting workflow
+
+tasks:
+  t1:
+    action: core.noop
+    next:
+      - when: <% succeeded() %>
+        do: 
+          - t2
+          - t3
+
+  t2:
+    action: core.local
+    input:
+      cmd: asdf
+
+  t3:
+    action: core.local
+    input:
+      cmd: asdf
+    next:
+      - when: <% succeeded() %>
+        do:
+          - user_prompt_finish
+          - t2
+      - when:  <% failed() %>
+        do: 
+          - user_prompt_retry
+
+  user_prompt_finish:
+    action: core.ask
+    input:
+      ttl: 0
+      schema:
+        type: object
+        properties:
+          finish:
+            type: boolean
+            description: "select to finish"
+            required: True
+          retry:
+            type: boolean
+            description: "select to retry"
+            required: True
+    next:
+      - when: <% result().response.finish = true %>
+        do: finish
+      - when: <% result().response.retry = true %>
+        do: t3
+
+  user_prompt_retry:
+    action: core.ask
+    input:
+      ttl: 0
+      schema:
+        type: object
+        properties:
+          retry:
+            type: boolean
+            description: "---"
+            required: True
+    next:
+      - when: <% result().response.retry = true%>
+        do: t3
+
+
+  finish:
+    action: core.noop
