@@ -1,0 +1,7 @@
+---
+name: pause-parent
+pack: bug
+runner_type: orquesta
+description: Parent workflow for the nested inquiry race bug
+enabled: True
+entry_point: workflows/pause-parent.yaml

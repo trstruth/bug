@@ -1,0 +1,17 @@
+version: 1.0
+
+tasks:
+  wait:
+    action: core.ask
+    input:
+      ttl: 0
+      schema:
+        type: object
+        properties:
+          custom_inner_pause:
+            type: boolean
+            description: "Retry?"
+            required: True
+    next:
+      - when: <% succeeded() and result().response.custom_inner_pause = False %>
+        do: fail

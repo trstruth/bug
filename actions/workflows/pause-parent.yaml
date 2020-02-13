@@ -1,0 +1,6 @@
+version: 1.0
+
+tasks:
+
+  start:
+    action: bug.pause-child
